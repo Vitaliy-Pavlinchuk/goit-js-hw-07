@@ -45,19 +45,19 @@ function createModal(x) {
     </div>
 `,
     {
-      onShow: (instance) => {
+    onShow: (instance) => {
         document.addEventListener("keydown", onEscClose);
         function onEscClose(event) {
-          if (event.code == "Escape") {
+        if (event.code == "Escape") {
             instance.close();
             document.removeEventListener("keydown", onEscClose);
-          }
         }
-      },
+        }
+    },
     }
-  );
+);
 
-  instance.show();
+instance.show();
 }
 
 
