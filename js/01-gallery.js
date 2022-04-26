@@ -26,39 +26,24 @@ return galleryItems
 
 galleryItemsContainer.addEventListener("click", onClickGallery);
 
+
+
 function onClickGallery(event) {
-  event.preventDefault();
-  const isgalleryImageEl = event.target.classList.contains("gallery__image");
-  if (!isgalleryImageEl) {
+    event.preventDefault();
+    
+const isGalleryImageEl = event.target.classList.contains("gallery__image");
+if (!isGalleryImageEl) {
     return;
-  }
-
-  const urlSource = event.target.dataset.source;
-    createModal(urlSource);
+}
+    
+    const largeImgLink = event.target.dataset.source;
+    
+    const instance = basicLightbox.create(`
+<img src="${largeImgLink}" alt="${event.target.alt}">
+`);
+    instance.show();
 }
 
-function createModal(x) {
-  const instance = basicLightbox.create(
-    `
-    <div class="modal">
-<img src="${x}"/>
-    </div>
-`,
-    {
-    onShow: (instance) => {
-        document.addEventListener("keydown", onEscClose);
-        function onEscClose(event) {
-        if (event.code == "Escape") {
-            instance.close();
-            document.removeEventListener("keydown", onEscClose);
-        }
-        }
-    },
-    }
-);
-
-instance.show();
-}
 
 
 
